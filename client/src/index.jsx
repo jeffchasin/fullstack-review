@@ -9,7 +9,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       repos: []
-    }
+    };
 
   }
 
@@ -17,8 +17,8 @@ class App extends React.Component {
     console.log(`${term} was searched`);
     // TODO
     $.ajax({
-      method: "POST",
-      url: "/repos",
+      method: 'POST',
+      url: '/repos',
       data: { term: term }
     })
       .done(function (msg) {
@@ -31,7 +31,7 @@ class App extends React.Component {
       <h1>Github Fetcher</h1>
       <RepoList repos={this.state.repos} />
       <Search onSearch={this.search.bind(this)} />
-    </div>)
+    </div>);
   }
 }
 
