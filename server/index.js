@@ -17,7 +17,8 @@ app.get('/repos', function (req, res) {
 
 let port = 1128;
 
-app.listen(port, function() {
+app.listen(port, function () {
   console.log(`listening on port ${port}`);
 });
 
+module.exports = app;
