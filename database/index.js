@@ -1,8 +1,9 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/fetcher');
+mongoose.connect('mongodb://127.0.0.1/fetcher');
 
 let db = mongoose.connection;
-db.on('error', console.error('DB connection error: ', error));
+// db.on('error', console.error('DB connection error!'));
+db.on('error', console.error.bind(console, 'DB connection error!'));
 
 db.once('open', function () {
   let repoSchema = mongoose.Schema({
@@ -17,16 +18,70 @@ db.once('open', function () {
     html_url: { type: String, required: true },
     stargazers_count: { type: Number },
     updated_at: { type: String },
-    timestamp: { type: Number },
+    timestamp: { type: String },
   });
 
+  // https://mongoosejs.com/docs/models.html
+  //   Models are fancy constructors compiled from Schema definitions.
+  //   An instance of a model is called a document. Models are
+  //   responsible for creating and reading documents from the
+  //   underlying MongoDB database.
   let Repo = mongoose.model('Repo', repoSchema);
 
-  let save = (/* TODO */) => {
-    // TODO: Your code here
+  let save = (data) => {
+    // TODO Your code here
     // This function should save a repo or repos to
     // the MongoDB
-  };
-});
+    console.log('In save');
+    let repos = JSON.parse(data);
+    // https://mongoosejs.com/docs/models.html#constructing-documents
+    repos.forEach(repo => {
+      let dt = new Date();
+      let eachRepo = new Repo({
+        id: repo.id,
+        name: repo.name,
+        owner_login: repo.owner.login,
+        html_url: repo.html_url,
+        stargazers_count: repo.stargazers_count,
+        updated_at: repo.updated_at,
+        timestamp: dt.toISOString()
+      });
+      eachRepo.save(function(err, repo) {
+        if (err) {
+          console.error('db save error: ', err);
+        }
+        if (repo) {
+          console.log('Saved repo to db: ', repo.name);
+        }
+      });
 
-module.exports.save = save;
+      // check if repo already exits, if not, save it
+      // Repo.find({ id: repo.id }, function (err, found) {
+      //   if (err) {
+      //     console.error('findById error: ', err);
+      //   } else {
+      //     console.log('Saving to DB');
+      //     console.log('Repo.find found: ', found);
+      //     eachRepo.save();
+      //   }
+      // });
+    });
+  };
+  module.exports.save = save;
+
+  let findTopRepos = (callback) => {
+    // query the DB & sort by stars
+    Repo.find({})
+      .sort({ stargazers_count: 'desc' })
+      .limit(25)
+      .exec(function (err, docs) {
+        if (err) {
+          console.error('findTopRepos query error: ', err);
+        } else {
+          console.log('findTopRepos docs: ', docs);
+          callback(docs);
+        }
+      });
+  };
+  module.exports.findTopRepos = findTopRepos;
+});

@@ -19,10 +19,15 @@ let getReposByUsername = (userName, callback) => {
     if (error) {
       console.error('getReposByUsername request error: ' + response.statusCode);
     } else if (response.statusCode === 200) {
-      console.log('getReposByUsername request body: ', body);
+      // console.log('getReposByUsername request body: ', body);
       callback(body);
     }
   });
 };
 
-module.exports.getReposByUsername = getReposByUsername;
+module.exports = getReposByUsername;
+
+// shocker: it actually works :-)
+// getReposByUsername('h5bp', function(bod) {
+//   console.log('getRepos response body: ', bod);
+// });

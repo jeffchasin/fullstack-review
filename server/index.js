@@ -1,5 +1,8 @@
 const express = require('express');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
+const getRepos = require('../helpers/github');
+const dbStuff = require('../database/index');
+
 let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
@@ -13,12 +16,21 @@ app.post('/repos', function (req, res) {
 
   // console.log(req.body.term);
   // res.json(req.body.term);
-  // TODO:
+
+  getRepos(req.body.term, function (body) {
+    console.log('getRepos called in server/index.js');
+    dbStuff.save(body);
+  });
 });
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
+  dbStuff.findTopRepos(function(docs) {
+    // TODO:
+    // what to send in response?
+    res.json(docs);
+  });
 });
 
 let port = 1128;
