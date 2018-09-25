@@ -5,8 +5,8 @@ const RepoList = (props) => {
   const listRepos = props.repos.map(repo => {
     return (
       <section className="post" key={repo.id}>
-        <h3 className="post-title"><a href={repo.html_url} >{repo.name}</a></h3>
-        <p className="post-meta">by {repo.owner_login} with {repo.stargazers_count} stars</p>
+        <p className="post-title"><a href={repo.html_url} >{repo.name}</a></p>
+        <p className="post-meta">by <a href={`https://github.com/${repo.owner_login}?tab=repositories`} target="_blank">{repo.owner_login}</a> with {repo.stargazers_count.toLocaleString()} ⭐️</p>
       </section>
     );
   });

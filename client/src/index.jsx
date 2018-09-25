@@ -39,6 +39,7 @@ class App extends React.Component {
     })
       .done(function (msg) {
         console.log('Search term posted to server: ' + msg);
+        window.location.reload();
       });
   }
 

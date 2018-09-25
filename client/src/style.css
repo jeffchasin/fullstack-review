@@ -102,7 +102,7 @@ h3 {
   border-bottom: #ccc solid 1px;
 }
 .post-title {
-  font-size: 2em;
+  font-size: 1.25em;
   color: #222;
   margin-bottom: 0.2em;
 }
@@ -117,7 +117,8 @@ h3 {
   line-height: 1.8em;
 }
 .post-meta {
-  color: #999;
+  color: rgb(61, 79, 93);
+  /* color: #999; */
   font-size: 90%;
   margin: 0;
 }
@@ -165,9 +166,10 @@ h3 {
 }
 
 .pure-button {
-  margin-top: 5px;
+  margin-top: 7px;
 }
 .nav-item input {
+  color: #000;
   margin-top: 5px;
 }
 .nav-list:first-child {
