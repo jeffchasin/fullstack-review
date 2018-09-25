@@ -29,7 +29,8 @@ app.get('/repos', function (req, res) {
   dbStuff.findTopRepos(function(docs) {
     // TODO:
     // what to send in response?
-    res.json(docs);
+    // console.log('app.get(repos) dbStuff.findTopRepos docs');
+    res.send(docs);
   });
 });
 

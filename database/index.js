@@ -78,7 +78,7 @@ db.once('open', function () {
         if (err) {
           console.error('findTopRepos query error: ', err);
         } else {
-          console.log('findTopRepos docs: ', docs);
+          console.log('findTopRepos docs accessed');
           callback(docs);
         }
       });
