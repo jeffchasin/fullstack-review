@@ -50,9 +50,9 @@ db.once('open', function () {
         if (err) {
           console.error('db save error: ', err);
         }
-        if (repo) {
-          console.log('Saved repo to db: ', repo.name);
-        }
+        // if (repo) {
+        //   console.log('Saved repo to db: ', repo.name);
+        // }
       });
 
       // check if repo already exits, if not, save it
@@ -66,6 +66,7 @@ db.once('open', function () {
       //   }
       // });
     });
+    console.log('Repos saved to DB');
   };
   module.exports.save = save;
 

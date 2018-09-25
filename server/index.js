@@ -7,6 +7,13 @@ let app = express();
 
 app.use(express.static(__dirname + '/../client/dist'));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.get('/repos.json', function(req, res) {
+  dbStuff.findTopRepos(function(repos) {
+    res.send(repos);
+  });
+});
 
 app.post('/repos', function (req, res) {
   // TODO - your code here!
@@ -20,17 +27,18 @@ app.post('/repos', function (req, res) {
   getRepos(req.body.term, function (body) {
     console.log('getRepos called in server/index.js');
     dbStuff.save(body);
+    res.send('posted & saved to db');
   });
 });
 
 app.get('/repos', function (req, res) {
   // TODO - your code here!
   // This route should send back the top 25 repos
-  dbStuff.findTopRepos(function(docs) {
-    // TODO:
+  dbStuff.findTopRepos(function(repos) {
+    // TODO
     // what to send in response?
     // console.log('app.get(repos) dbStuff.findTopRepos docs');
-    res.send(docs);
+    res.send(repos);
   });
 });
 
