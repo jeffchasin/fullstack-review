@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1/fetcher');
+// mongoose.connect('mongodb://127.0.0.1/fetcher');
+mongoose.connect('mongodb://heroku_qzwk559w:bgf0srns3g1q83v0ifnpfnnj2f@ds161443.mlab.com:61443/heroku_qzwk559w');
 
 let db = mongoose.connection;
 // db.on('error', console.error('DB connection error!'));

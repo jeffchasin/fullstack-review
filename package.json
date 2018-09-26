@@ -1,7 +1,7 @@
 {
-  "name": "github-fetcher-fullstack-v2",
+  "name": "fullstack-fetcher",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hack Reactor Fullstack Review sprint app",
   "main": "index.js",
   "scripts": {
     "react-dev": "webpack -d --watch",
@@ -10,6 +10,10 @@
   },
   "author": "Beth Johnson",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/McCloudFace/rpt09-fullstack-review"
+  },
   "devDependencies": {
     "babel-core": "^6.23.1",
     "babel-loader": "^6.3.2",
@@ -30,5 +34,8 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "request": "^2.81.0"
+  },
+  "engines": {
+    "node": "10.9.0"
   }
 }
