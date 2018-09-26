@@ -7,12 +7,14 @@ let getReposByUsername = (userName, callback) => {
 
   // The options object has been provided to help you out,
   // but you'll have to fill in the URL
+  let configToken = process.env.TOKEN;
   let options = {
     method: 'GET',
     url: `https://api.github.com/users/${userName}/repos`,
     headers: {
       'User-Agent': 'request',
-      'Authorization': `token ${config.TOKEN}`
+      'Authorization': `token ${configToken}`
+      // 'Authorization': `token ${config.TOKEN}`
     }
   };
   request(options, function (error, response, body) {
