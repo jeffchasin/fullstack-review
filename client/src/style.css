@@ -64,8 +64,9 @@ h3 {
   list-style: none;
 }
 .nav-item {
-  display: inline-block;
-  *display: inline;
+  display: block;
+  /* display: inline-block;
+  *display: inline; */
   zoom: 1;
 }
 .nav-item a {
@@ -166,6 +167,7 @@ h3 {
 }
 
 .pure-button {
+  margin-left: 5px;
   margin-top: 7px;
 }
 .nav-item input {

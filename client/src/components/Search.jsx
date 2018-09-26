@@ -24,7 +24,7 @@ class Search extends React.Component {
         <ul className="nav-list">
           <li className="nav-item">(enter a github username)</li>
           <li className="nav-item">
-            <input value={this.state.term} onChange={this.onChange.bind(this)} />
+            <input id="searchinput" value={this.state.term} onChange={this.onChange.bind(this)} />
             <button className="pure-button" onClick={this.search.bind(this)}> Add Repos </button>
           </li>
         </ul>

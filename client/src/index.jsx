@@ -11,22 +11,40 @@ class App extends React.Component {
     this.state = {
       repos: []
     };
+    this.getTopTwentyFive = this.getTopTwentyFive.bind(this);
+  }
 
+  getTopTwentyFive() {
+    $.ajax({
+      method: 'GET',
+      url: '/repos.json',
+      success: (result) => {
+        this.setState({
+          repos: result
+        });
+      }
+    });
+    // .done(function (result) {
+    //   // console.log('GET repos.json, result" ', result);
+    //   this.setState({
+    //     repos: result
+    //   });
+    // });
   }
 
   componentDidMount() {
-    var that = this;
+    this.getTopTwentyFive();
 
-    $.ajax({
-      method: 'GET',
-      url: '/repos.json'
-    })
-      .done(function (result) {
-        // console.log('GET repos.json, result" ', result);
-        that.setState({
-          repos: result
-        });
-      });
+    // $.ajax({
+    //   method: 'GET',
+    //   url: '/repos.json'
+    // })
+    //   .done(function (result) {
+    //     // console.log('GET repos.json, result" ', result);
+    //     that.setState({
+    //       repos: result
+    //     });
+    //   });
   }
 
   search(term) {
@@ -37,9 +55,10 @@ class App extends React.Component {
       url: '/repos',
       data: { term: term }
     })
-      .done(function (msg) {
+      .done( (msg) => {
         console.log('Search term posted to server: ' + msg);
-        window.location.reload();
+        // window.location.reload();
+        this.getTopTwentyFive();
       });
   }
 
