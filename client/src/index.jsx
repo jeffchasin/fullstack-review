@@ -43,24 +43,14 @@ class App extends React.Component {
     dudeImg.src = dudeUrl;
     dudeImg.alt = 'thedude';
     dudeDiv.appendChild(dudeImg);
-
     document.querySelector('h4').appendChild(dudeDiv);
-
-    // $(dudeDiv).insertBefore('.content.pure-u-1.pure-u-md-3-4');
-
     const keySequence = [
-      'ArrowUp',
-      'ArrowUp',
-      'ArrowDown',
-      'ArrowDown',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowLeft',
-      'ArrowRight',
-      'b',
-      'a',
+      'ArrowUp', 'ArrowUp',
+      'ArrowDown', 'ArrowDown',
+      'ArrowLeft', 'ArrowRight',
+      'ArrowLeft', 'ArrowRight',
+      'b', 'a',
     ];
-
     let userInput = new Array(keySequence.length);
     window.addEventListener('keydown', ({ key }) => {
       userInput = [...userInput.slice(1), key];
