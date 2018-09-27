@@ -4,6 +4,7 @@ import $ from 'jquery';
 import Search from './components/Search.jsx';
 import RepoList from './components/RepoList.jsx';
 import './style.css';
+import dudeUrl from './img/theDude.gif';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,6 +35,47 @@ class App extends React.Component {
 
   componentDidMount() {
     this.getTopTwentyFive();
+
+    // easter egg
+    let dudeDiv = document.createElement('div');
+    dudeDiv.id = 'theDude';
+    let dudeImg = document.createElement('img');
+    dudeImg.src = dudeUrl;
+    dudeImg.alt = 'thedude';
+    dudeDiv.appendChild(dudeImg);
+
+    document.querySelector('h4').appendChild(dudeDiv);
+
+    // $(dudeDiv).insertBefore('.content.pure-u-1.pure-u-md-3-4');
+
+    const keySequence = [
+      'ArrowUp',
+      'ArrowUp',
+      'ArrowDown',
+      'ArrowDown',
+      'ArrowLeft',
+      'ArrowRight',
+      'ArrowLeft',
+      'ArrowRight',
+      'b',
+      'a',
+    ];
+
+    let userInput = new Array(keySequence.length);
+    window.addEventListener('keydown', ({ key }) => {
+      userInput = [...userInput.slice(1), key];
+      if (keySequence.every((v, k) => v === userInput[k])) {
+        window.scroll({
+          top: 0,
+          behavior: 'instant'
+        });
+        $('#theDude').fadeIn(3000, function () {
+          window.setTimeout(function () {
+            $('#theDude').fadeOut(4000);
+          }, 4000);
+        });
+      }
+    });
 
     // $.ajax({
     //   method: 'GET',
